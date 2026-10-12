@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kabelo Pheeloane | Senior digital marketing leader, Johannesburg</title>
   <meta name="description" content="Kabelo Pheeloane is a senior digital marketing leader in Johannesburg with 10+ years building digital functions across FMCG, media, QSR, AI automation and global B2B. Work, writing and thinking on AI and marketing.">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#050505">
   <script>
     // Runs first so the right theme shows with no flash
     try { var t = localStorage.getItem('theme'); } catch (e) {}
@@ -23,11 +23,13 @@
   <div class="nav">
     <div class="bar">
       <a class="brand" href="#top" aria-label="Kabelo Pheeloane, back to top"><img src="kabelo.jpg" alt="" width="32" height="32">Kabelo Pheeloane</a>
-      <nav aria-label="Main">
-        <a href="#funnel">Approach</a>
-        <a href="#work">Work</a>
-        <a href="#writing">Writing</a>
-        <a href="#contact">Contact</a>
+      <nav class="dial" aria-label="Main">
+        <a href="#funnel" data-f="0.7">Approach</a>
+        <a href="#work" data-f="1.4">Experience</a>
+        <a href="#writing" data-f="2.2">Writing</a>
+        <a href="#about" data-f="1">About</a>
+        <a href="#contact" data-f="1.8">Contact</a>
+        <span class="needle" aria-hidden="true"></span>
       </nav>
       <div class="right">
         <button id="kbtn" class="kbtn" type="button" aria-label="Open command menu">Menu <kbd id="kkey">Ctrl K</kbd></button>
@@ -40,18 +42,30 @@
   <div class="wrap">
 
     <header class="hero" id="top">
-      <canvas id="gl" aria-hidden="true"></canvas>
+      <div class="hero-bg" aria-hidden="true"></div>
+      <canvas id="sig" aria-hidden="true"></canvas>
       <div class="kicker-row">
         <p class="kicker">Senior Digital Marketing Leader</p>
         <p class="status"><span class="pulse"></span>Open to remote and pan-African roles</p>
       </div>
+      <p class="hello">// hello, I'm</p>
       <h1 class="name" aria-label="Kabelo Pheeloane"><span class="line" aria-hidden="true">Kabelo</span><span class="line" aria-hidden="true">Pheeloane.</span></h1>
+      <p class="typed"><span class="prompt">&gt;_</span> <span id="typed">Senior Digital Marketing Leader</span><span class="caret"></span></p>
       <div class="hero-grid">
         <p class="lede">I turn <span class="swap" id="swap">attention</span> into growth.</p>
         <div class="hero-side">
           <p>Senior digital marketing leader in Johannesburg. I build and run digital functions across Africa and beyond, from paid media to AI automation, and I am working toward being a leading African voice on AI and marketing.</p>
           <div class="cta"><a class="btn" href="#work">See the work</a><a class="btn ghost" href="Kabelo_Pheeloane_CV.pdf" download>Download CV</a></div>
         </div>
+      </div>
+      <svg class="skyline" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Line drawing of the Johannesburg skyline">
+        <path pathLength="1" d="M0 200 H1200 M40 200 V150 H110 V200 M130 200 V120 H165 V105 H200 V200 M260 200 V34 Q295 22 330 34 V200 M260 70 H330 M260 110 H330 M260 150 H330 M285 40 V200 M305 40 V200 M272 24 H318 V32 M350 200 V140 H380 V90 H430 V200 M560 200 L577 150 L579 72 M600 200 L583 150 L581 72 M577 150 H583 M562 72 H598 V54 H562 Z M562 72 L570 80 H590 L598 72 M580 54 V4 M650 200 V70 H720 V200 M660 70 V58 H710 V70 M740 200 V130 H800 V200 M820 200 V100 H845 V80 H890 V200 M910 200 V150 H980 V200 M1000 200 V110 H1030 V90 H1060 V200 M1080 200 V140 H1160 V200"/>
+      </svg>
+      <div class="coords">
+        <div><span>Coordinates</span><b>26.20&deg;S &middot; 28.05&deg;E</b></div>
+        <div><span>Base</span><b>Johannesburg, South Africa</b></div>
+        <div><span>Local time</span><b id="time2">--:--:--</b></div>
+        <a class="scroll" href="#destinations">Scroll to explore <i></i></a>
       </div>
     </header>
   </div>
@@ -63,6 +77,21 @@
     </div>
   </div>
 
+  <section id="destinations">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Pick a destination</h2>
+        <p>Four ways into my work. Start wherever you are curious.</p>
+      </div>
+      <ul class="dest">
+        <li data-reveal><a href="#funnel"><i>01</i><div><h3>Approach</h3><p>How I think about a brief, from the first impression to a loyal customer.</p></div><span>Open &rarr;</span></a></li>
+        <li data-reveal><a href="#work"><i>02</i><div><h3>Experience</h3><p>Nine roles across a decade, from insights analyst to head of a team.</p></div><span>Open &rarr;</span></a></li>
+        <li data-reveal><a href="#writing"><i>03</i><div><h3>Writing</h3><p>Notes on AI, marketing and building in public from Johannesburg.</p></div><span>Open &rarr;</span></a></li>
+        <li data-reveal><a href="#about"><i>04</i><div><h3>About</h3><p>The person behind the numbers, plus the tools I work with.</p></div><span>Open &rarr;</span></a></li>
+      </ul>
+    </div>
+  </section>
+
   <section id="funnel">
     <div class="wrap">
       <div class="sec-head">
@@ -70,10 +99,10 @@
         <p>Every brief is a funnel problem. This is where I put the effort.</p>
       </div>
       <div class="stats">
-        <div class="stat" data-reveal><b><span class="num" data-count="10">0</span><i>+</i></b><span>years building digital functions</span></div>
-        <div class="stat" data-reveal style="--d:.1s"><b><i>R</i><span class="num" data-count="4.3" data-dec="1">0</span><i>M</i></b><span>paid media managed a month at CBR</span></div>
-        <div class="stat" data-reveal style="--d:.2s"><b><span class="num" data-count="4.2" data-dec="1">0</span><i>:1</i></b><span>average ROAS on that spend</span></div>
-        <div class="stat" data-reveal style="--d:.3s"><b><span class="num" data-count="182">0</span><i>%</i></b><span>audience growth at The North Coast Courier</span></div>
+        <div class="stat" data-reveal><em class="idx">01</em><b class="fig"><span class="num" data-count="10">0</span><i>+</i></b><p class="cap">years building digital functions</p><div class="viz ticks" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><i style="--k:9"></i></div></div>
+        <div class="stat" data-reveal style="--d:.1s"><em class="idx">02</em><b class="fig"><i>R</i><span class="num" data-count="4.3" data-dec="1">0</span><i>M</i></b><p class="cap">paid media managed a month at CBR. One block is R1M.</p><div class="viz blocks" aria-hidden="true"><i style="--k:0;--f:1"></i><i style="--k:1;--f:1"></i><i style="--k:2;--f:1"></i><i style="--k:3;--f:1"></i><i style="--k:4;--f:0.3"></i></div></div>
+        <div class="stat" data-reveal style="--d:.2s"><em class="idx">03</em><b class="fig"><span class="num" data-count="4.2" data-dec="1">0</span><i>:1</i></b><p class="cap">average ROAS. Every R1 of spend returned R4.20.</p><div class="viz bars" aria-hidden="true"><i style="--w:23.8%"><em>Spend 1</em></i><i class="hot" style="--w:100%;--d:.15s"><em>Return 4.2</em></i></div></div>
+        <div class="stat" data-reveal style="--d:.3s"><em class="idx">04</em><b class="fig"><span class="num" data-count="182">0</span><i>%</i></b><p class="cap">audience growth at The North Coast Courier in 18 months.</p><div class="viz bars" aria-hidden="true"><i style="--w:35.6%"><em>Before 8,400</em></i><i class="hot" style="--w:100%;--d:.15s"><em>After 23,600</em></i></div></div>
       </div>
       <div class="funnel">
         <div class="stage" data-reveal style="--w:100%"><h3><small>01</small>Awareness</h3><p>Content and social that earn attention. At The North Coast Courier, monthly active users grew from 8,400 to 23,600 in 18 months.</p><div class="bar"></div></div>
@@ -145,14 +174,21 @@
 
   <section id="contact" class="contact">
     <div class="wrap">
-      <h2>Let's talk.</h2>
+      <h2>Have a project in mind?</h2>
       <!-- EDIT: add your LinkedIn, GitHub and X links below -->
       <a class="mail" href="mailto:kabelo.p.pheeloane@gmail.com">kabelo.p.pheeloane@gmail.com</a>
       <div class="links"><a href="Kabelo_Pheeloane_CV.pdf" download>Download my CV</a><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">X</a></div>
     </div>
   </section>
 
-  <footer><div class="wrap">&copy; <span id="year">2026</span> Kabelo Pheeloane. Built by hand in Johannesburg.</div></footer>
+  <footer>
+    <div class="wrap foot">
+      <div><b>Kabelo Pheeloane</b><p>Senior digital marketing leader building growth with strategy, content and AI.</p></div>
+      <div><h4>Navigate</h4><a href="#destinations">Destinations</a><a href="#funnel">Approach</a><a href="#work">Experience</a><a href="#writing">Writing</a><a href="#about">About</a></div>
+      <div><h4>Connect</h4><a href="mailto:kabelo.p.pheeloane@gmail.com">Email</a><a href="Kabelo_Pheeloane_CV.pdf" download>Download CV</a><a href="#">LinkedIn</a></div>
+      <p class="legal">&copy; <span id="year">2026</span> Kabelo Pheeloane. Built by hand in Johannesburg.</p>
+    </div>
+  </footer>
 
   <dialog id="cmd" aria-label="Command menu"><input id="cmdq" type="text" placeholder="Jump to..." autocomplete="off" aria-label="Search commands"><ul id="cmdl" role="listbox"></ul></dialog>
 

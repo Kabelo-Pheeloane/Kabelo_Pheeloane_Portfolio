@@ -10,7 +10,7 @@ function setTheme(t) {
   root.dataset.theme = t;
   tb.textContent = t === 'dark' ? 'Light' : 'Dark';
   tb.setAttribute('aria-label', 'Switch to ' + (t === 'dark' ? 'light' : 'dark') + ' theme');
-  $('meta[name=theme-color]').content = t === 'dark' ? '#000000' : '#ffffff';
+  $('meta[name=theme-color]').content = t === 'dark' ? '#050505' : '#ffffff';
   if (window.glDark) window.glDark(t === 'dark');
 }
 setTheme(root.dataset.theme);
@@ -155,54 +155,6 @@ if (hover && !reduce) {
   hero.addEventListener('pointerleave', () => letters.forEach(c => { c.style.fontVariationSettings = ''; }));
 }
 
-/* WebGL hero: flowing marble with contour lines that bends around the cursor */
-(function () {
-  const cv = $('#gl'); if (!cv) return;
-  const gl = cv.getContext('webgl', { antialias: false, alpha: false });
-  if (!gl) { cv.remove(); return; }
-  const fs = `precision highp float;uniform vec2 r,m;uniform float t,dark;
-float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
-float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p*=2.;a*=.5;}return v;}
-void main(){
-  vec2 uv=gl_FragCoord.xy/r,p=(gl_FragCoord.xy-.5*r)/r.y,mm=(m*r-.5*r)/r.y;
-  float d=length(p-mm); p+=.25*exp(-d*3.)*(p-mm);
-  vec2 q=vec2(fbm(p*1.6+t*.04),fbm(p*1.6+vec2(5.2,1.3)-t*.03));
-  float f=fbm(p*1.8+2.6*q+t*.02);
-  vec3 base=vec3(1.-dark);
-  vec3 fog=vec3(mix(.74,.34,dark));
-  vec3 c=mix(base,fog,smoothstep(.25,.85,f)*mix(.7,.6,dark));
-  c+=exp(-d*4.)*mix(-.05,.10,dark);
-  c+=(h(gl_FragCoord.xy+fract(t)*91.)-.5)*mix(.05,.07,dark);
-  gl_FragColor=vec4(mix(base,c,smoothstep(0.,.35,uv.y)),1.);}`;
-  const sh = (ty, src) => { const o = gl.createShader(ty); gl.shaderSource(o, src); gl.compileShader(o); return o; };
-  const pg = gl.createProgram();
-  gl.attachShader(pg, sh(gl.VERTEX_SHADER, 'attribute vec2 a;void main(){gl_Position=vec4(a,0,1);}'));
-  gl.attachShader(pg, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pg);
-  if (!gl.getProgramParameter(pg, gl.LINK_STATUS)) { cv.remove(); return; }
-  root.classList.add('has-gl'); gl.useProgram(pg);
-  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-  const a = gl.getAttribLocation(pg, 'a'); gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
-  const U = k => gl.getUniformLocation(pg, k), ur = U('r'), ut = U('t'), um = U('m'), ud = U('dark');
-  let dark = root.dataset.theme === 'dark' ? 1 : 0, dk = dark, tx = .5, ty = .5, mx = .5, my = .5, vis = true;
-  window.glDark = d => { dark = d ? 1 : 0; };
-  const size = () => { const k = Math.min(devicePixelRatio, 1.5) * .6; cv.width = cv.clientWidth * k; cv.height = cv.clientHeight * k; gl.viewport(0, 0, cv.width, cv.height); };
-  addEventListener('resize', size); size();
-  addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); tx = (e.clientX - r.left) / r.width; ty = 1 - (e.clientY - r.top) / r.height; });
-  new IntersectionObserver(([e]) => { vis = e.isIntersecting; }).observe(cv);
-  const t0 = performance.now();
-  (function frame(now) {
-    requestAnimationFrame(frame);
-    if (!vis || document.hidden) return;
-    const t = (now - t0) / 1000;
-    if (!hoverOK) { tx = .5 + .3 * Math.sin(t * .4); ty = .5 + .2 * Math.cos(t * .3); }
-    mx += (tx - mx) * .06; my += (ty - my) * .06; dk += (dark - dk) * .08;
-    gl.uniform2f(ur, cv.width, cv.height); gl.uniform1f(ut, reduce ? 10 : t); gl.uniform2f(um, mx, my); gl.uniform1f(ud, dk);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
-  })(t0);
-})();
-
 /* Command menu: Ctrl/Cmd+K */
 (function () {
   const cmd = $('#cmd'), cq = $('#cmdq'), cl = $('#cmdl');
@@ -259,4 +211,85 @@ void main(){
     it.appendChild(img); return it;
   });
   track.append(...build(false), ...build(true));
+})();
+
+/* Typewriter roles and live Johannesburg time with seconds */
+(function () {
+  const el = $('#typed'), t2 = $('#time2');
+  if (t2) {
+    const f = () => { t2.textContent = new Intl.DateTimeFormat('en-ZA', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Africa/Johannesburg' }).format(new Date()); };
+    f(); setInterval(f, 1000);
+  }
+  if (!el || reduce) return;
+  const roles = ['Senior Digital Marketing Leader', 'Paid Media Strategist', 'AI and Marketing Automation', 'Content and Growth Lead'];
+  let i = 0, j = roles[0].length, del = true;
+  (function tick() {
+    const w = roles[i]; el.textContent = w.slice(0, j);
+    if (!del && j === w.length) { del = true; return setTimeout(tick, 1800); }
+    if (del && j === 0) { del = false; i = (i + 1) % roles.length; }
+    j += del ? -1 : 1;
+    setTimeout(tick, del ? 28 : 55);
+  })();
+})();
+
+/* Signal through noise: static resolves into one clean line; the dial retunes it */
+(function () {
+  const cv = $('#sig'), sk = $('.skyline'); if (!cv || !sk) return;
+  const cx = cv.getContext('2d'), nc = document.createElement('canvas'), nx = nc.getContext('2d');
+  let W, H, img, mx = -1e3, my = -1e3, vis = true, freq = 1, ft = 1, bt = -1e9;
+  const size = () => {
+    const d = Math.min(devicePixelRatio, 2); W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0);
+    nc.width = Math.ceil(W / 3); nc.height = Math.ceil(H / 3); img = nx.createImageData(nc.width, nc.height);
+  };
+  addEventListener('resize', size); size();
+  addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; });
+  window.tuneSignal = f => { ft = f; bt = performance.now(); };
+  new IntersectionObserver(([e]) => { vis = e.isIntersecting; }).observe(cv);
+  const t0 = performance.now(), L = 7;
+  (function frame(now) {
+    requestAnimationFrame(frame);
+    if (!vis || document.hidden) return;
+    const t = (now - t0) / 1000, dark = root.dataset.theme === 'dark', ink = dark ? '255,255,255' : '0,0,0', acc = dark ? '255,48,64' : '215,20,31';
+    const boot = reduce ? 0 : Math.pow(1 - Math.min(t / 3.2, 1), 2);
+    const burst = reduce ? 0 : Math.max(0, 1 - (now - bt) / 900) * .7;
+    const n = Math.max(boot, burst);
+    freq += (ft - freq) * .06;
+    cx.clearRect(0, 0, W, H);
+    const dd = img.data, c = dark ? 255 : 0, a = n * 90 + 10;
+    for (let i = 0; i < dd.length; i += 4) { if (Math.random() < .5) { dd[i] = dd[i + 1] = dd[i + 2] = c; dd[i + 3] = a * Math.random(); } else dd[i + 3] = 0; }
+    nx.putImageData(img, 0, 0); cx.imageSmoothingEnabled = false; cx.drawImage(nc, 0, 0, W, H);
+    const sr = sk.getBoundingClientRect(), cr = cv.getBoundingClientRect();
+    const y0 = sr.top - cr.top + sr.height * .4, A = Math.min(H * .1, 64);
+    for (let k = L - 1; k >= 0; k--) {
+      const main = k === 0;
+      cx.beginPath();
+      for (let x = 0; x <= W; x += 4) {
+        const g = Math.exp(-Math.pow((x - mx) / 180, 2)) * Math.exp(-Math.pow((y0 - my) / 300, 2));
+        let y = Math.sin(x * .011 * freq + t * 1.3) * A * .5 + Math.sin(x * .029 * freq - t * .9) * A * .16;
+        y *= 1 + 1.1 * g;
+        if (!main) y += (Math.sin(x * .05 * k + t * (2 + k) + k * 5) * Math.sin(x * .013 - k * 2 + t * 1.7) * A * 1.3 + (Math.random() - .5) * A * .5) * n;
+        else y += (Math.random() - .5) * A * .35 * n;
+        x ? cx.lineTo(x, y0 + y) : cx.moveTo(x, y0 + y);
+      }
+      cx.strokeStyle = main ? 'rgba(' + acc + ',1)' : 'rgba(' + ink + ',' + .35 * n + ')';
+      cx.lineWidth = main ? 1.6 : 1; cx.stroke();
+    }
+  })(t0);
+})();
+
+/* Radio dial navigation */
+(function () {
+  const d = $('.dial'); if (!d) return;
+  const links = $$('a', d), secs = links.map(l => $(l.getAttribute('href')));
+  const set = a => { links.forEach(l => l.classList.toggle('on', l === a)); d.style.setProperty('--nx', (a.offsetLeft + a.offsetWidth / 2 - 1) + 'px'); };
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const l = links[secs.indexOf(e.target)]; set(l); window.tuneSignal && window.tuneSignal(+l.dataset.f);
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(s => s && io.observe(s));
+  links.forEach(l => l.addEventListener('mouseenter', () => window.tuneSignal && window.tuneSignal(+l.dataset.f)));
+  addEventListener('resize', () => { const a = $('.on', d); if (a) set(a); });
+  document.fonts && document.fonts.ready.then(() => set($('.on', d) || links[0]));
+  set(links[0]);
 })();

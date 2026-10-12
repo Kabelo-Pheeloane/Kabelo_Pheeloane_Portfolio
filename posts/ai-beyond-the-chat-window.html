@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The chatbot is the 1%: what AI can do without a corporate budget | Kabelo Pheeloane</title>
+  <meta name="description" content="Most people meet AI through a chat box. Here is what sits behind it, and what it costs someone with no corporate budget.">
+  <script>
+    try { var t = localStorage.getItem('theme'); } catch (e) {}
+    document.documentElement.dataset.theme = t || 'dark';
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Playfair+Display:wght@400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="post-bar">
+    <a href="../index.html#writing">&larr; Kabelo Pheeloane</a>
+    <button id="t" type="button">Dark</button>
+  </header>
+  <main class="article">
+    <p class="post-meta">AI &middot; 10 October 2026 &middot; 6 min read</p>
+    <h1>The chatbot is the 1%: what AI can do without a corporate budget</h1>
+    <p class="standfirst">Most people meet AI through a chat box. That is the shop window. Behind it sits a whole workshop that anyone can use, and almost nobody does.</p>
+
+    <p>First, a confession about the title. The "1%" is a figure of speech. Nobody has measured how much of AI's usefulness is visible in a chat window, and I am not going to pretend otherwise. But after years of building automations for brands and newsrooms, I'm confident the gap between how most people use AI and what is available to them is enormous, and it has very little to do with money.</p>
+
+    <h2>The chat box is the front door</h2>
+    <p>Consumer AI apps are designed to be easy. You type, it answers. That is useful, and it is where most people stop. The trouble is that a chat window answers one question at a time, forgets your work, and does nothing until you ask. The same underlying models can be wired into your own tools, fed your own documents and set to work on a schedule. That is where the leverage is.</p>
+
+    <h2>What sits behind the door</h2>
+    <ul>
+      <li><strong>Automation platforms.</strong> Tools such as Make, Zapier and n8n connect the apps you already use, and they now let you drop an AI step into the middle of a workflow. A new lead arrives, the AI summarises it, scores it and drafts a reply, and the result lands in your CRM. No developer required. At The North Coast Courier, dashboards and workflow automation took our reporting cycle from 12 hours to 45 minutes, which handed the team back 18 hours a month. That was before the current generation of AI tools.</li>
+      <li><strong>APIs you pay for by use.</strong> Instead of a flat subscription to a chat app, you can call a model from your own tool and pay only for what you run. Small jobs cost very little, though you should always check current pricing before you build on it.</li>
+      <li><strong>AI that knows your documents.</strong> You can point a model at your reports, past campaigns, contracts or notes and ask questions across all of them. It turns a pile of files into something you can interrogate.</li>
+      <li><strong>AI that writes software.</strong> Describe a calculator, a dashboard or a small web tool in plain English and you can get working code back. You still have to test it, but the barrier to building has dropped from years of training to an afternoon of curiosity.</li>
+      <li><strong>Open models on your own machine.</strong> Free software now lets you run open-weight models on a decent laptop or PC. Your data never leaves your device and there is no per-use fee. The trade-off is that smaller models are less capable than the best commercial ones.</li>
+      <li><strong>Seeing, hearing and speaking.</strong> Modern models can transcribe a meeting or a radio show, read a chart or a receipt from a photo, and hold a spoken conversation. For a marketer, that is a social listening team that never sleeps.</li>
+    </ul>
+
+    <h2>What this looks like in marketing</h2>
+    <p>Turn one long article or podcast into a week of platform-specific posts. Pull last month's campaign data, flag the anomalies and draft the commentary before the Monday meeting. Summarise what ten competitors published this week. Generate twenty headline variants, then test the strongest two. None of this replaces strategy. It removes the dull middle of the work so that the person with the strategy has time to use it.</p>
+
+    <div class="callout">The advantage of a large company is scale, data and compliance. The advantage of an individual is speed. AI rewards speed more than it rewards budget.</div>
+
+    <h2>The honest limits</h2>
+    <ul>
+      <li><strong>Time and skill.</strong> It is cheap in money and not free in effort. Your first automation will take longer than doing the task by hand.</li>
+      <li><strong>Accuracy.</strong> Models still make things up. Anything with a number, a name or a legal consequence needs a human check.</li>
+      <li><strong>Privacy.</strong> Do not paste client data into any tool without understanding where it goes and whether you are allowed to. Local models are one answer to this.</li>
+      <li><strong>Costs at scale.</strong> Pay-per-use is cheap for a small job and can climb quickly for a heavy one. Set limits.</li>
+      <li><strong>Terms and platforms change.</strong> Tools, prices and rules move fast, so check the current details before you commit.</li>
+    </ul>
+
+    <h2>Where to start this week</h2>
+    <ol>
+      <li>Pick one task you repeat every week and dislike.</li>
+      <li>Write down its steps as if explaining it to a new colleague.</li>
+      <li>Find the boring middle, the copying, sorting, summarising or reformatting, and hand only that to AI.</li>
+      <li>Keep a human check at the end.</li>
+      <li>Time it. If you saved an hour, build the next one.</li>
+    </ol>
+    <p>The gap between a casual user and a power user is not a corporate budget. It is a habit of asking, "could a machine do this part?" The people who build that habit now will be hard to catch.</p>
+
+    <div class="post-end">
+      <p>I'm Kabelo Pheeloane, a digital marketing leader in Johannesburg writing about AI and marketing. If this made you think, <a href="mailto:kabelo.p.pheeloane@gmail.com">tell me what you'd add</a>.</p>
+    </div>
+    <div class="sources"><h2>A note on facts</h2><p>Tool names are examples, not endorsements. Features and pricing change often, so check each provider's current information before you build anything. The reporting result is from my own work at The North Coast Courier.</p></div>
+  </main>
+  <script>
+    var r = document.documentElement, b = document.getElementById('t');
+    function set(t) { r.dataset.theme = t; b.textContent = t === 'dark' ? 'Light' : 'Dark'; }
+    set(r.dataset.theme);
+    b.onclick = function () { var t = r.dataset.theme === 'dark' ? 'light' : 'dark'; set(t); try { localStorage.setItem('theme', t); } catch (e) {} };
+  </script>
+</body>
+</html>
