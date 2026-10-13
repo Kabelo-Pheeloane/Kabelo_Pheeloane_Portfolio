@@ -509,3 +509,30 @@ footer, [data-theme="dark"] footer { background: #050505; color: #8f8b84; }
 .bars i.hot em { color: #fff; }
 .in .bars i { width: var(--w); }
 @media (prefers-reduced-motion: reduce) { .ticks i { transform: none; } .blocks i::after { transform: scaleX(var(--f)); } .bars i { width: var(--w); } }
+
+/* ===== Funnel Run game ===== */
+#game { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: .75rem; background: rgba(0,0,0,.95); color: #f4f4f4; font-family: var(--sans); }
+#game[hidden] { display: none; }
+.gwrap { width: 100%; }
+.ghud { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; margin-bottom: .75rem; }
+.gtitle b { display: block; font: 700 1.3rem var(--sans); letter-spacing: -.02em; }
+.gtitle span { font-size: .8rem; color: #9d9d9d; letter-spacing: .08em; text-transform: uppercase; }
+.gstats { display: flex; gap: 1.1rem; font-size: .9rem; color: #9d9d9d; }
+.gstats b { color: #fff; font-variant-numeric: tabular-nums; }
+#glives { color: #ff3040; letter-spacing: .15em; }
+.gctl { display: flex; gap: .4rem; }
+.gctl button { font: 500 .8rem var(--sans); color: #f4f4f4; background: transparent; border: 1px solid #333; border-radius: 99px; padding: .3rem .8rem; cursor: pointer; }
+.gctl button:hover { border-color: #ff3040; color: #ff3040; }
+.gstage { position: relative; background: #050505; border: 1px solid #2a2a2a; border-radius: 1rem; overflow: hidden; }
+#gcv { display: block; width: 100%; touch-action: none; }
+.gmsg { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: .75rem; padding: 1.5rem; text-align: center; background: rgba(0,0,0,.86); }
+.gmsg[hidden] { display: none; }
+.gmsg h3 { font: 700 clamp(1.5rem, 1rem + 2.5vw, 2.4rem) var(--sans); letter-spacing: -.03em; }
+.gmsg p { max-width: 44ch; color: #cfcfcf; font: 400 clamp(.9rem, .85rem + .3vw, 1.05rem)/1.5 var(--serif); }
+.gmbtns { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-top: .5rem; }
+.gbtn { font: 600 .95rem var(--sans); color: #f4f4f4; background: transparent; border: 1px solid #444; border-radius: 99px; padding: .65rem 1.3rem; cursor: pointer; }
+.gbtn[hidden] { display: none; }
+.gbtn.primary { background: #ff3040; border-color: #ff3040; color: #fff; }
+.gbtn:hover { border-color: #ff3040; }
+.ghint { margin-top: .6rem; font-size: .8rem; color: #8a8a8a; text-align: center; }
+@media (max-width: 640px) { #playbtn { display: none; } }

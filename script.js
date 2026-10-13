@@ -162,6 +162,7 @@ if (hover && !reduce) {
   const items = [['Approach', '#funnel'], ['Work', '#work'], ['Writing', '#writing'], ['About', '#about'], ['Contact', '#contact'],
     ['Download CV', () => { const l = document.createElement('a'); l.href = 'Kabelo_Pheeloane_CV.pdf'; l.download = ''; l.click(); }],
     ['Email Kabelo', () => { location.href = 'mailto:kabelo.p.pheeloane@gmail.com'; }],
+    ['Play Funnel Run', () => window.openGame && window.openGame()],
     ['Toggle theme', () => toggleTheme()]];
   let sel = 0, shown = items;
   const draw = () => { cl.innerHTML = shown.map((x, i) => '<li role="option" aria-selected="' + (i === sel) + '" data-i="' + i + '">' + x[0] + '</li>').join(''); };

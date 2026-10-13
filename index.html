@@ -33,6 +33,7 @@
       </nav>
       <div class="right">
         <button id="kbtn" class="kbtn" type="button" aria-label="Open command menu">Menu <kbd id="kkey">Ctrl K</kbd></button>
+        <button id="playbtn" class="kbtn" type="button">Play</button>
         <span class="clock">Johannesburg <span id="time">--:--</span></span>
         <button id="theme" type="button">Dark</button>
       </div>
@@ -55,7 +56,7 @@
         <p class="lede">I turn <span class="swap" id="swap">attention</span> into growth.</p>
         <div class="hero-side">
           <p>Senior digital marketing leader in Johannesburg. I build and run digital functions across Africa and beyond, from paid media to AI automation, and I am working toward being a leading African voice on AI and marketing.</p>
-          <div class="cta"><a class="btn" href="#work">See the work</a><a class="btn ghost" href="Kabelo_Pheeloane_CV.pdf" download>Download CV</a></div>
+          <div class="cta"><a class="btn" href="#work">See the work</a><a class="btn ghost" href="Kabelo_Pheeloane_CV.pdf" download>Download CV</a><button class="btn ghost" id="playhero" type="button">Play Funnel Run</button></div>
         </div>
       </div>
       <svg class="skyline" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Line drawing of the Johannesburg skyline">
@@ -190,9 +191,25 @@
     </div>
   </footer>
 
+  <div id="game" role="dialog" aria-modal="true" aria-label="Funnel Run, a marketing game" hidden>
+    <div class="gwrap">
+      <div class="ghud">
+        <div class="gtitle"><b>Funnel Run</b><span id="glevel">Level 1</span></div>
+        <div class="gstats"><span>Score <b id="gscore">0</b></span><span>Best <b id="gbest">0</b></span><span id="glives" aria-label="Lives">&hearts;&hearts;&hearts;</span></div>
+        <div class="gctl"><button id="gsound" type="button" aria-pressed="false">Sound off</button><button id="gpause" type="button">Pause</button><button id="gclose" type="button" aria-label="Close game">Close &times;</button></div>
+      </div>
+      <div class="gstage">
+        <canvas id="gcv" aria-label="Game board"></canvas>
+        <div id="gmsg" class="gmsg"><h3 id="gmh"></h3><p id="gmp"></p><div class="gmbtns"><button id="gmb" class="gbtn primary" type="button"></button><button id="gm2" class="gbtn" type="button" hidden></button></div></div>
+      </div>
+      <p class="ghint">Arrow keys, WASD or swipe to move. P pauses, Esc closes.</p>
+    </div>
+  </div>
+
   <dialog id="cmd" aria-label="Command menu"><input id="cmdq" type="text" placeholder="Jump to..." autocomplete="off" aria-label="Search commands"><ul id="cmdl" role="listbox"></ul></dialog>
 
   <script src="posts.js"></script>
   <script src="script.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
